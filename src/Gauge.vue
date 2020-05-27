@@ -138,6 +138,13 @@
     name: 'Gauge',
     props: {
       /**
+       * Specify a custom height
+       */
+      customHeight: {
+        type: Number,
+        default: null,
+      },
+      /**
        * Gauge value
        */
       value: {
@@ -300,6 +307,9 @@
        * @type {Number}
        */
       height() {
+        if (this.customHeight) {
+          return this.customHeight
+        }
         const { endAngle, startAngle } = this
         const { y: yStart } = polarToCartesian(RADIUS, startAngle)
         const { y: yEnd } = polarToCartesian(RADIUS, endAngle)
